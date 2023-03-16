@@ -1,0 +1,44 @@
+﻿@*@model IEnumerable<RecipeTable>*@
+@model X.PagedList.IPagedList<PIMPER.Models.RecipeTable>
+@using X.PagedList.Mvc.Core;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@using (Html.BeginForm())
+{
+	<p>
+		Find by name: @Html.TextBox("SearchString")
+		<input type="submit" value="Search" />
+	</p>
+}
+    <div class="container">
+        <div class="row">
+			
+        @foreach(var recipe in Model)
+        {
+			<div class="col-lg-3 col-md-6">
+				<div class="row p-2">
+					<div class="col-12 p-1" style="border:1px solid #008cba; border-radius: 5px;">
+						<div class="card">
+							<img src="@recipe.ImageUrl" class="card-img-top rounded" />
+
+							<div class="card-body">
+								<div class="pl-1" >
+									@Html.ActionLink(@recipe.Name, "Index", new { sortOrder = ViewBag.NameSortParm })
+								</div>
+							</div>
+						</div>
+						<div>
+							<a asp-action="Details" class="btn btn-primary form-control" asp-route-recipeId="@recipe.Id">
+								INGREDIENTS
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+        }
+        </div>
+    </div>
+	<br />
+	Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

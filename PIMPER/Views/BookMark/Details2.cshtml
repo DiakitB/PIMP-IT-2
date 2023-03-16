@@ -1,0 +1,62 @@
+﻿@model UserBookMark
+
+<form method="post">
+
+   @* <input hidden asp-for="RecipeTableId" />*@
+    <div class="container pt-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <img src="@Model.RecipeTable.ImageUrl" width="100%" class="rounded" />
+            </div>
+            <div class="col-12 col-lg-6">
+                <p>
+                    0
+
+
+                    i am getting this error SqlException: Cannot insert explicit value for identity column in table 'Ogretmenler' when IDENTITY_INSERT is set to OFF. Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, bool breakConnection, Action wrapCloseInAction)
+
+                    DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details. Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection
+
+                    what should i do?
+
+                    here is my code
+
+                    [HttpGet]
+                </p>
+                <div class="row pl-2">
+                    @foreach (var ingredient in Model.RecipeTable.RecipeIngredientTable)
+                    {
+                        <div class="" style="width: 18rem;">
+                            <ul class="">
+                                <li class="">@ingredient.IngredientTable.QuantitiesTable.Name @ingredient.IngredientTable.UnitTable.Name @ingredient.IngredientTable.Name</li>
+
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @* <div class="row pl-2">
+    @foreach(var ingredient in Model.RecipeTable.RecipeIngredientTable)
+    {
+    <div class="" style="width: 18rem;">
+    <ul class="">
+    <li class="">@ingredient.IngredientTable.QuantitiesTable.Name @ingredient.IngredientTable.UnitTable.Name @ingredient.IngredientTable.Name</li>
+
+    </ul>
+    </div>
+    }
+    </div>*@
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-12 col-md-6 pb-1">
+                <a class="btn btn-success form-control " style="height:50px;" asp-action="Index">Back to Home</a>
+            </div>
+            @*<div class="col-12 col-md-6 pb-1">
+                <a class="btn btn-success form-control " asp-controller="BookMark" style="height:50px;" asp-route-Id="@Model.Id" asp-action="Delete">Delete</a>
+            </div>*@
+        </div>
+    </div>
+
+</form>
